@@ -9,6 +9,8 @@ private String birthday;
 private String notes;
 
 
+//sort by name when added to linked list
+
 public Contact(String name, int phone, String email, String address, String birthday, String notes) {
     if (exists(name,phone))   //to insure uniqueness, but maybe theres another way
         return;
