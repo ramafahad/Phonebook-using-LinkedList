@@ -5,4 +5,15 @@ public class LinkedListADT {
     //public boolean add(){}
     // public Contact -or list of contacts?- search(){}
     // public void delete(){ also deletes events }
+
+
+
+
+
+
+
+
+
+
+    
 }
