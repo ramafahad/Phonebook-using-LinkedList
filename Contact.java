@@ -45,8 +45,8 @@ public class Contact implements Comparable<Contact>  {
 
      @Override
     public int compareTo(Contact b) {
-        if (name.compareTo(b.name)==0)
-             return (name.substring(name.indexOf(" "))).compareTo(b.name.substring(b.name.indexOf(" "))); //compares last names
+       // if (name.compareTo(b.name)==0)
+          //   return (name.substring(name.indexOf(" "))).compareTo(b.name.substring(b.name.indexOf(" "))); //compares last names
        return name.compareTo(b.name);
     }
 

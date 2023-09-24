@@ -2,7 +2,8 @@ import java.util.Scanner;
 
 public class Phonebook{
 
-public static Scanner input = new Scanner(System.in);
+public static Scanner input = new Scanner(System.in); // to use it in the whole class if needed
+public static LinkedList<Contact> PBook; // to use it in main and other methods
 //field for linkedlist
 
 // i think the uniqueness for the contact should be checking here, i mean we can create a contact but not add it untill we check
@@ -94,13 +95,40 @@ public static void main(String[] args) {
         }
 
 
-    }while(num!=8); // i dont know what would be tha max num so i put 8 عباطه
+    }while(num!=8); // i dont know what would be the max num so i put 8 عباطه
 
 
 
 
 
 }// end main
+
+
+
+public static boolean checkUnique(Contact c){
+
+    // retirn true if its unique false otherwise
+    if(PBook.isEmpty())
+    return true;
+    PBook.findfirst();
+    while(!PBook.last())
+    {
+        if(PBook.retrieve().getName().equals(c.getName()) || PBook.retrieve().getPhone().equals(c.getPhone())){
+            return false;
+        }
+        PBook.findnext();
+    }
+
+    if(PBook.retrieve().getName().equals(c.getName()) || PBook.retrieve().getPhone().equals(c.getPhone()))
+        return false;
+
+    else
+        return true;
+
+}
+
+
+
 
 
     
