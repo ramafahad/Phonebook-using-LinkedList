@@ -1,4 +1,4 @@
-public class LinkedListADT {
+public class LinkedListADT { 
     //linked list data structure used to store the contacts.
     //methods for adding, searching, and deleting contacts from the list.
 
