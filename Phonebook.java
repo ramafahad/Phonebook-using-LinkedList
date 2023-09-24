@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Phonebook{
 
 public static Scanner input = new Scanner(System.in); // to use it in the whole class if needed
-public static LinkedList<Contact> PBook; // to use it in main and other methods
+public static LinkedList<Contact> PBook= new LinkedList<Contact>(); // to use it in main and other methods
 //field for linkedlist
 
 // i think the uniqueness for the contact should be checking here, i mean we can create a contact but not add it untill we check
@@ -12,6 +12,7 @@ public static LinkedList<Contact> PBook; // to use it in main and other methods
 // implement a method to print all contact that share a event& that shate the first name
 
 public static void main(String[] args) {
+    
 
     System.out.println("Welcome to the phonebook!");
     // do while for menu 
@@ -39,6 +40,14 @@ public static void main(String[] args) {
             String bday=input.nextLine();
             System.out.println("Enter any notes for the contact:");
             String note=input.nextLine();
+            Contact newContact= new Contact(name,phone,email,address,bday,note);
+
+            if(checkUnique(newContact)) {
+                PBook.add(newContact);
+                System.out.println("Contact added successfully!");}
+            else
+            System.out.println("This contact already exists!");
+                
             break;
 
             case 2:
@@ -107,7 +116,7 @@ public static void main(String[] args) {
 
 public static boolean checkUnique(Contact c){
 
-    // retirn true if its unique false otherwise
+    // return true if its unique false otherwise
     if(PBook.isEmpty())
     return true;
     PBook.findfirst();
