@@ -1,5 +1,5 @@
 
-
+import java.util.*;
 public class Contact implements Comparable<Contact>  { 
     private String name;
     private String phone; // i believe its better in String
@@ -7,6 +7,7 @@ public class Contact implements Comparable<Contact>  {
     private String address;
     private String birthday;
     private String notes;
+    private List<Event> events;
 
     /*there is a sentence said if a contact is deleted then all related events are also deleted 
     so there should be an event array or something in contact and use aggreagation as java2
@@ -21,6 +22,7 @@ public class Contact implements Comparable<Contact>  {
         this.address = address;
         this.birthday = birthday;
         this.notes = notes;
+        events=null;
     }
 
     public Contact() {
@@ -30,6 +32,7 @@ public class Contact implements Comparable<Contact>  {
         address=null;
         birthday=null;
         notes=null;
+        events=null;
     }
 
 
@@ -42,6 +45,8 @@ public class Contact implements Comparable<Contact>  {
 
      @Override
     public int compareTo(Contact b) {
+        if (name.compareTo(b.name)==0)
+             return (name.substring(name.indexOf(" "))).compareTo(b.name.substring(b.name.indexOf(" "))); //compares last names
        return name.compareTo(b.name);
     }
 
