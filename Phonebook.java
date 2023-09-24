@@ -21,13 +21,48 @@ public static void main(String[] args) {
         System.out.println(" 1.Add a contact \n 2.Search for a contact \n 3.Delete a contact \n 4.Schedule an event \n 5.Print event details \n 6.Print contacts by first name \n 7.Print all events alphabetically \n 8.Exit");
 
         num=input.nextInt();
+        input.nextLine();
 
 
         switch(num){
             case 1:
+            System.out.println("Enter the contact's name:");
+            String name=input.nextLine();
+            System.out.println("Enter the contact's phone number");
+            String phone=input.nextLine();
+            System.out.println("Enter the contact's email address:");
+            String email=input.nextLine();
+            System.out.println("Enter the contact's address:");
+            String address=input.nextLine();
+            System.out.println("Enter the contact's birthday:");
+            String bday=input.nextLine();
+            System.out.println("Enter any notes for the contact:");
+            String note=input.nextLine();
             break;
 
             case 2:
+            System.out.println("Enter search criteria:\n 1.Name\n 2. Phone Number\n 3.Email Address \n 4.Address\n 5.Birthday");
+            int searchChoice=input.nextInt();
+            switch (searchChoice) {
+                case 1:
+                    System.out.println("Enter the contact's name:");
+                    break;
+                case 2:
+                    System.out.println("Enter the contact's phone number");
+                    break;
+                case 3:
+                    System.out.println("Enter the contact's email address:");
+                    break;
+                case 4:
+                    System.out.println("Enter the contact's address:");
+                    break;
+                case 5:
+                    System.out.println("Enter the contact's birthday:");
+                    break;
+                default:
+                System.out.println("You have entered a wrong number, please try again");
+                    break;
+            }
             break;
 
             case 3:
