@@ -38,15 +38,13 @@ public class Contact implements Comparable<Contact>  {
 
     @Override
     public String toString() {
-        return "Contact [name=" + name + ", phone=" + phone + ", email=" + email + ", address=" + address
-                + ", birthday=" + birthday + ", notes=" + notes + "]";
+        return " Name: " + name + "\n Phone Number: " + phone + "\n Email Address: " + email + "\n Address: " + address
+                + "\n Birthday: " + birthday + "\n Notes: " + notes;
     }
 
 
      @Override
     public int compareTo(Contact b) {
-       // if (name.compareTo(b.name)==0)
-          //   return (name.substring(name.indexOf(" "))).compareTo(b.name.substring(b.name.indexOf(" "))); //compares last names
        return name.compareTo(b.name);
     }
 

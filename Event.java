@@ -15,4 +15,8 @@ public class Event {
     }
 
 
+    public String toString() {
+        return " Event title: " + title + "\n Contact name: " + contactInvolved + "\n Event date and time(MM/DD/YYYYHH:MM):" + dateTime + "\n Event location:" + location;
+    }
+    
 }
