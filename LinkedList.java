@@ -69,6 +69,48 @@ public class LinkedList<T>  {
     }
 
 
+    public void insert (T val) {
+        Node<T> tmp;
+        if (isEmpty()) 
+        current = head = new Node<T> (val);
+        
+        else {
+        tmp = current.next;
+        current.next = new Node<T> (val);
+        current = current.next;
+        current.next = tmp;
+        }
+    }
+
+
+
+
+
+
+
+
+
+    public void remove () {
+
+        if (current == head) 
+            head = head.next;
+        
+        else {
+        Node<T> tmp = head;
+        while (tmp.next != current)
+            tmp = tmp.next;
+        tmp.next = current.next;
+        }
+        if (current.next == null)
+            current = head;
+        else
+            current = current.next;
+     }
+ 
+        
+
+
+    
 
 
 

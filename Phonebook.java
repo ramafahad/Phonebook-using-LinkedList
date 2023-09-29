@@ -142,6 +142,84 @@ public static boolean checkUnique(Contact c){
 
 
 
+public static LinkedList<Contact> search(int searchChoice ,String choice){
+   // لازم نشيك انها ما ترجع نل لما نناديها 
+
+    LinkedList<Contact> returnedlist= new LinkedList<>();
+
+    if (PBook.isEmpty())
+    return null;
+    
+    PBook.findfirst();
+    while(!PBook.last()){
+        switch(searchChoice){
+            case 1:
+                    if(PBook.retrieve().getName().equals(choice))
+                        returnedlist.insert( PBook.retrieve());
+
+            break;
+
+            case 2:
+                    if(PBook.retrieve().getPhone().equals(choice))
+                            returnedlist.insert( PBook.retrieve());
+            break;
+
+            case 3:
+                    if(PBook.retrieve().getEmail().equals(choice))
+                            returnedlist.insert( PBook.retrieve());
+            break;
+
+            case 4 :
+                    if(PBook.retrieve().getAddress().equals(choice))
+                            returnedlist.insert( PBook.retrieve());
+
+            break;
+            case 5 :
+                    if(PBook.retrieve().getBirthday().equals(choice))
+                            returnedlist.insert( PBook.retrieve());
+
+            break;
+
+        }// end switch
+
+        PBook.findnext();
+    }// end while
+
+// check the last node 
+    switch(searchChoice){
+                case 1:
+                        if(PBook.retrieve().getName().equals(choice))
+                            returnedlist.insert( PBook.retrieve());
+                break;
+
+                case 2:
+                        if(PBook.retrieve().getPhone().equals(choice))
+                                returnedlist.insert( PBook.retrieve());
+                break;
+
+                case 3:
+                        if(PBook.retrieve().getEmail().equals(choice))
+                                returnedlist.insert( PBook.retrieve());
+                break;
+
+                case 4 :
+                        if(PBook.retrieve().getAddress().equals(choice))
+                                returnedlist.insert( PBook.retrieve());
+                break;
+
+                case 5 :
+                        if(PBook.retrieve().getBirthday().equals(choice))
+                                returnedlist.insert( PBook.retrieve());
+                break;
+
+         }// end switch
+
+    return returnedlist;
+
+}// end searh method
+
+
+
 
 
 
