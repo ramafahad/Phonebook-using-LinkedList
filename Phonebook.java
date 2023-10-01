@@ -107,6 +107,7 @@ public static void main(String[] args) {
                 else{
                     Event e= new Event(title, DateTime, location, contactInvolved);
                     contactInvolved.setEvents(e);
+                    //add to big list
                     System.out.println("Event scheduled successfully!");
                 }}
             break;
@@ -170,13 +171,13 @@ public static boolean checkUnique(Contact c){
     PBook.findFirst();
     while(!PBook.last())
     {
-        if(PBook.retrieve().getName().equals(c.getName()) || PBook.retrieve().getPhone().equals(c.getPhone())){
+        if(PBook.retrieve().getName().equalsIgnoreCase(c.getName()) || PBook.retrieve().getPhone().equalsIgnoreCase(c.getPhone())){
             return false;
         }
         PBook.findNext();
     }
 
-    if(PBook.retrieve().getName().equals(c.getName()) || PBook.retrieve().getPhone().equals(c.getPhone()))
+    if(PBook.retrieve().getName().equalsIgnoreCase(c.getName()) || PBook.retrieve().getPhone().equalsIgnoreCase(c.getPhone()))
         return false;
 
     else
@@ -199,7 +200,7 @@ public static LinkedList<Contact> search(int searchChoice ,String choice){
     while(!PBook.last()){
         switch(searchChoice){
             case 1:
-                    if(PBook.retrieve().getName().equals(choice))
+                    if(PBook.retrieve().getName().equalsIgnoreCase(choice))
                         returnedlist.insert( PBook.retrieve());
 
             break;
@@ -210,12 +211,12 @@ public static LinkedList<Contact> search(int searchChoice ,String choice){
             break;
 
             case 3:
-                    if(PBook.retrieve().getEmail().equals(choice))
+                    if(PBook.retrieve().getEmail().equalsIgnoreCase(choice))
                             returnedlist.insert( PBook.retrieve());
             break;
 
             case 4 :
-                    if(PBook.retrieve().getAddress().equals(choice))
+                    if(PBook.retrieve().getAddress().equalsIgnoreCase(choice))
                             returnedlist.insert( PBook.retrieve());
 
             break;
@@ -233,7 +234,7 @@ public static LinkedList<Contact> search(int searchChoice ,String choice){
 // check the last node 
     switch(searchChoice){
                 case 1:
-                        if(PBook.retrieve().getName().equals(choice))
+                        if(PBook.retrieve().getName().equalsIgnoreCase(choice))
                             returnedlist.insert( PBook.retrieve());
                 break;
 
@@ -243,12 +244,12 @@ public static LinkedList<Contact> search(int searchChoice ,String choice){
                 break;
 
                 case 3:
-                        if(PBook.retrieve().getEmail().equals(choice))
+                        if(PBook.retrieve().getEmail().equalsIgnoreCase(choice))
                                 returnedlist.insert( PBook.retrieve());
                 break;
 
                 case 4 :
-                        if(PBook.retrieve().getAddress().equals(choice))
+                        if(PBook.retrieve().getAddress().equalsIgnoreCase(choice))
                                 returnedlist.insert( PBook.retrieve());
                 break;
 
