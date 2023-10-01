@@ -4,7 +4,10 @@
 
     // public Contact -or list of contacts?- search(){}
     // public void delete(){ also deletes events }
-public class LinkedList<T>  { 
+
+import java.util.List;
+
+public class LinkedList<T> { 
     private Node<T> head;
     private Node<T> current;
 
@@ -13,7 +16,11 @@ public class LinkedList<T>  {
         head = current = null;
     }
 
-    public boolean isEmpty () { 
+    public boolean full(){
+        return false;
+    }
+
+    public boolean empty () { 
         return head == null;
     }
 
@@ -21,11 +28,11 @@ public class LinkedList<T>  {
         return current.next ==null;
     }
 
-    public void findfirst() {
+    public void findFirst() {
         current = head;
     }
 
-    public void findnext () { 
+    public void findNext () { 
         current = current.next;
     }
     public T retrieve() {
@@ -71,7 +78,7 @@ public class LinkedList<T>  {
 
     public void insert (T val) {
         Node<T> tmp;
-        if (isEmpty()) 
+        if (empty()) 
         current = head = new Node<T> (val);
         
         else {
@@ -81,11 +88,6 @@ public class LinkedList<T>  {
         current.next = tmp;
         }
     }
-
-
-
-
-
 
 
 
@@ -109,9 +111,28 @@ public class LinkedList<T>  {
  
         
 
-
+     public void printList() {
+        if(empty()){
+        System.out.println("not found!");
+        return;}
+        findFirst();
+        while(current != null){
+            System.out.println(current.data.toString());
+            System.out.println("");
+            current = current.next;
+        }
+    return;
+    }
     
-
+    
+    /* public T find(String name){ //method to find object based on name, can use to find contact and find event
+         if (empty())
+         return null;
+         findFirst();
+        while(current != null){
+            if(current.data.getName().equals(name))
+            current = current.next;
+    }} */
 
 
 

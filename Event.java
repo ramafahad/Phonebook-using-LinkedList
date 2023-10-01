@@ -16,7 +16,40 @@ public class Event {
 
 
     public String toString() {
-        return " Event title: " + title + "\n Contact name: " + contactInvolved + "\n Event date and time(MM/DD/YYYYHH:MM):" + dateTime + "\n Event location:" + location;
+        return " Event title: " + title + "\n Contact title: " + contactInvolved + "\n Event date and time(MM/DD/YYYYHH:MM):" + dateTime + "\n Event location:" + location;
     }
     
+
+    public String gettitle() {
+        return this.title;
+    }
+
+    public void settitle(String title) {
+        this.title = title;
+    }
+
+    public String getDateTime() {
+        return this.dateTime;
+    }
+
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
+    }
+
+    public String getLocation() {
+        return this.location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public Contact getContactInvolved() {
+        return this.contactInvolved;
+    }
+
+    public void setContactInvolved(Contact contactInvolved) {
+        this.contactInvolved = contactInvolved;
+    }
+
 }

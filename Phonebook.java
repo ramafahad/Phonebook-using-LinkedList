@@ -51,7 +51,7 @@ public static void main(String[] args) {
             break;
 
             case 2:
-            System.out.println("Enter search criteria:\n 1.Name\n 2. Phone Number\n 3.Email Address \n 4.Address\n 5.Birthday");
+            System.out.println("Enter search criteria:\n 1.Name\n 2.Phone Number\n 3.Email Address \n 4.Address\n 5.Birthday");
             int searchChoice=input.nextInt();
             switch (searchChoice) {
                 case 1:
@@ -70,21 +70,66 @@ public static void main(String[] args) {
                     System.out.println("Enter the contact's birthday:");
                     break;
                 default:
-                System.out.println("You have entered a wrong number, please try again");
+                System.out.println("You have entered a wrong number, please try again!");
                     break;
             }
+            input.nextLine();
+            String choice=input.nextLine();
 
-
-            
+            if(!search(searchChoice ,choice).empty()) { // اتوقع افضل لو اسمي الليست بدال ما انادي مرتين بس مالي خلق
+            System.out.println("Contact/s found!\n"); 
+            search(searchChoice ,choice).printList();}
+            else 
+            System.out.println("Nothing found!\n"); 
             break;
 
             case 3:
+            System.out.println("Enter the name of the contact you want to delete"); 
+            String deleteContact=input.nextLine();
+            //////
             break;
 
             case 4:
+            System.out.println("Enter event title: ");
+            String title=input.nextLine(); 
+            System.out.println("Enter contact name:");
+            String contact=input.nextLine();
+            if(search(1,contact).empty()) 
+                System.out.print("Contact entered doesn't exist!\n");
+            else {
+            Contact contactInvolved=search(1,contact).retrieve();
+            System.out.println("Enter event date and time (MM/DD/YYYY HH:MM):");
+            String DateTime=input.nextLine();
+            System.out.println("Enter event location:");
+            String location=input.nextLine();
+                if(contactInvolved.checkconflict(DateTime)) 
+                System.out.println("the contact has time conflict!\n");
+                else{
+                    Event e= new Event(title, DateTime, location, contactInvolved);
+                    contactInvolved.setEvents(e);
+                    System.out.println("Event scheduled successfully!");
+                }}
             break;
 
             case 5:
+            System.out.println("Enter search criteria:\n1.Contact name\n2.Event tittle");
+            int searchEvent=input.nextInt();
+            input.nextLine();
+            switch(searchEvent){
+                case 1:
+                System.out.println("Enter contact name:");
+                String contactE=input.nextLine();
+                if(search(1,contactE).empty())
+                System.out.print("Contact entered doesn't exist!\n");
+                else {
+                    System.out.println("Events for "+contactE);
+                    search(1,contactE).retrieve().getEvents().printList();}
+                break;
+
+               // case 2:
+
+
+            }
             break;
 
             case 6:
@@ -120,15 +165,15 @@ public static void main(String[] args) {
 public static boolean checkUnique(Contact c){
 
     // return true if its unique false otherwise
-    if(PBook.isEmpty())
+    if(PBook.empty())
     return true;
-    PBook.findfirst();
+    PBook.findFirst();
     while(!PBook.last())
     {
         if(PBook.retrieve().getName().equals(c.getName()) || PBook.retrieve().getPhone().equals(c.getPhone())){
             return false;
         }
-        PBook.findnext();
+        PBook.findNext();
     }
 
     if(PBook.retrieve().getName().equals(c.getName()) || PBook.retrieve().getPhone().equals(c.getPhone()))
@@ -147,10 +192,10 @@ public static LinkedList<Contact> search(int searchChoice ,String choice){
 
     LinkedList<Contact> returnedlist= new LinkedList<>();
 
-    if (PBook.isEmpty())
-    return null;
+    if (PBook.empty())
+    return returnedlist;
     
-    PBook.findfirst();
+    PBook.findFirst();
     while(!PBook.last()){
         switch(searchChoice){
             case 1:
@@ -182,7 +227,7 @@ public static LinkedList<Contact> search(int searchChoice ,String choice){
 
         }// end switch
 
-        PBook.findnext();
+        PBook.findNext();
     }// end while
 
 // check the last node 
@@ -217,8 +262,6 @@ public static LinkedList<Contact> search(int searchChoice ,String choice){
     return returnedlist;
 
 }// end searh method
-
-
 
 
 

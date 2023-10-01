@@ -7,12 +7,14 @@ public class Contact implements Comparable<Contact>  {
     private String address;
     private String birthday;
     private String notes;
-    private List<Event> events;
+    private LinkedList<Event> events;
 
     /*there is a sentence said if a contact is deleted then all related events are also deleted 
     so there should be an event array or something in contact and use aggreagation as java2
     */
     //sort by name when added to linked list
+
+
 
     public Contact(String name, String phone, String email, String address, String birthday, String notes) {
         
@@ -22,7 +24,7 @@ public class Contact implements Comparable<Contact>  {
         this.address = address;
         this.birthday = birthday;
         this.notes = notes;
-        events=null;
+        events= new LinkedList<>();
     }
 
     public Contact() {
@@ -32,7 +34,7 @@ public class Contact implements Comparable<Contact>  {
         address=null;
         birthday=null;
         notes=null;
-        events=null;
+        events= new LinkedList<>();
     }
 
 
@@ -78,6 +80,10 @@ public class Contact implements Comparable<Contact>  {
         this.notes = notes;
     }
 
+    public void setEvents(Event event) {
+        this.events.insert(event);
+    }
+
     public String getName() {
         return name;
     }
@@ -102,8 +108,29 @@ public class Contact implements Comparable<Contact>  {
         return notes;
     }
 
-   
+     public LinkedList<Event> getEvents() {
+        return events;
+    }
 
+
+
+
+   
+    public boolean checkconflict(String DateTime){
+        // true if theres conflict, false if not
+        if(events.empty())
+        return false;
+        
+        events.findFirst();
+            while(!events.last()){
+            if(events.retrieve().getDateTime().equals((DateTime)))
+            return true;
+            events.findFirst();}
+            if(events.retrieve().getDateTime().equals(DateTime))
+            return true;
+            return false;
+    
+       }
 
     
     
