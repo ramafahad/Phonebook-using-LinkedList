@@ -1,6 +1,7 @@
 
 import java.util.*;
-public class Contact implements Comparable<Contact>  { 
+
+public class Contact implements Comparable<Contact> {
     private String name;
     private String phone; // i believe its better in String
     private String email;
@@ -9,34 +10,34 @@ public class Contact implements Comparable<Contact>  {
     private String notes;
     private LinkedList<Event> events;
 
-    /*there is a sentence said if a contact is deleted then all related events are also deleted 
-    so there should be an event array or something in contact and use aggreagation as java2
-    */
-    //sort by name when added to linked list
-
-
+    /*
+     * there is a sentence said if a contact is deleted then all related events are
+     * also deleted
+     * so there should be an event array or something in contact and use
+     * aggreagation as java2
+     */
+    // sort by name when added to linked list
 
     public Contact(String name, String phone, String email, String address, String birthday, String notes) {
-        
+
         this.name = name;
         this.phone = phone;
         this.email = email;
         this.address = address;
         this.birthday = birthday;
         this.notes = notes;
-        events= new LinkedList<>();
+        events = new LinkedList<Event>();
     }
 
     public Contact() {
-        name=null;
-        phone=null;
-        email=null;
-        address=null;
-        birthday=null;
-        notes=null;
-        events= new LinkedList<>();
+        name = null;
+        phone = null;
+        email = null;
+        address = null;
+        birthday = null;
+        notes = null;
+        events = new LinkedList<Event>();
     }
-
 
     @Override
     public String toString() {
@@ -44,17 +45,10 @@ public class Contact implements Comparable<Contact>  {
                 + "\n Birthday: " + birthday + "\n Notes: " + notes;
     }
 
-
-     @Override
+    @Override
     public int compareTo(Contact b) {
-       return name.compareTo(b.name);
+        return name.compareTo(b.name);
     }
-
-    
-   
-
-
-
 
     public void setName(String name) {
         this.name = name;
@@ -108,40 +102,25 @@ public class Contact implements Comparable<Contact>  {
         return notes;
     }
 
-     public LinkedList<Event> getEvents() {
+    public LinkedList<Event> getEvents() {
         return events;
     }
 
-
-
-
-   
-    public boolean checkconflict(String DateTime){
+    public boolean checkconflict(String DateTime) {
         // true if theres conflict, false if not
-        if(events.empty())
-        return false;
-        
-        events.findFirst();
-            while(!events.last()){
-            if(events.retrieve().getDateTime().equals((DateTime)))
-            return true;
-            events.findFirst();}
-            if(events.retrieve().getDateTime().equals(DateTime))
-            return true;
+        if (events.empty())
             return false;
-    
-       }
 
-    
-    
+        events.findFirst();
+        while (!events.last()) {
+            if (events.retrieve().getDateTime().equals((DateTime)))
+                return true;
+            events.findNext();
+        }
+        if (events.retrieve().getDateTime().equals(DateTime))
+            return true;
+        return false;
 
-
-    
-
-        
-
-
-
-
+    }
 
 }
