@@ -61,7 +61,7 @@ public class Phonebook {
                             break;
                         case 2:
                             System.out.println("Enter the contact's phone number");
-                            break;
+                            break; //should we check unique here? before the user enters all the rest ويتعب نفسه
                         case 3:
                             System.out.println("Enter the contact's email address:");
                             break;
@@ -128,7 +128,7 @@ public class Phonebook {
                             if (search(1, contactE).empty())
                                 System.out.print("Contact entered doesn't exist!\n");
                             else {
-                                System.out.println("Events for " + contactE);
+                                System.out.println("Events for " + contactE); //يطبع معلومات الكونتاكت لاني ناديت تو سترينق، مزعجة يبيلها حل
                                 search(1, contactE).retrieve().getEvents().printList();
                             }
                             break;
@@ -148,17 +148,14 @@ public class Phonebook {
                     break;
 
                 case 6:
-                    System.out.println(" print contacts by first name ");
-                    if (PBook.empty())
-                        System.out.println("the contact list is empty");
-                    else {
-                        PBook.findFirst();
-                        if (!PBook.last()) {
-
-                        }
-
-                    } // end else
-
+                    System.out.println("Enter the first name: ");
+                    String firstName = input.next();
+                    if (search(7, firstName).empty()) 
+                                System.out.print("No contact with the entered first name!\n");
+                            else {
+                                System.out.println("Contacts found!");
+                                search(7, firstName).printList();
+                            }
                     break;
 
                 case 7:
@@ -246,6 +243,11 @@ public class Phonebook {
                         System.out.println(AllEvent.retrieve());// insert as list
                     break;
 
+                case 7:
+                    if (PBook.retrieve().getName().substring(0, PBook.retrieve().getName().indexOf(" ")).equalsIgnoreCase(choice))
+                        returnedlist.insert(PBook.retrieve());
+                    break;
+
             }// end switch
 
             PBook.findNext();
@@ -283,6 +285,11 @@ public class Phonebook {
 
                 if (AllEvent.retrieve().gettitle().equalsIgnoreCase(choice))
                     System.out.println(AllEvent.retrieve());
+                break;
+
+            case 7:
+                if (PBook.retrieve().getName().substring(0, PBook.retrieve().getName().indexOf(" ")).equalsIgnoreCase(choice))
+                    returnedlist.insert(PBook.retrieve());
                 break;
 
         }// end switch
