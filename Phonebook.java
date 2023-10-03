@@ -4,6 +4,7 @@ public class Phonebook {
 
     public static Scanner input = new Scanner(System.in); // to use it in the whole class if needed
     public static LinkedList<Contact> PBook = new LinkedList<Contact>(); // to use it in main and other methods
+    public static LinkedList<Event> AllEvent = new LinkedList<Event>();;
     // field for linkedlist
 
     // i think the uniqueness for the contact should be checking here, i mean we can
@@ -95,7 +96,7 @@ public class Phonebook {
                     System.out.println("Enter event title: ");
                     String title = input.nextLine();
                     System.out.println("Enter contact name:");
-                    String contact = input.nextLine();
+                    String contact = input.nextLine(); // change it to conta name
                     if (search(1, contact).empty())
                         System.out.print("Contact entered doesn't exist!\n");
                     else {
@@ -109,10 +110,11 @@ public class Phonebook {
                         else {
                             Event e = new Event(title, DateTime, location, contactInvolved);
                             contactInvolved.setEvents(e);
+                            AllEvent.add(e);
                             // add to big list
                             System.out.println("Event scheduled successfully!");
                         }
-                    }
+                    } // end else
                     break;
 
                 case 5:
@@ -131,17 +133,36 @@ public class Phonebook {
                             }
                             break;
 
-                        // case 2:
+                        case 2:
+                            System.out.println("Enter Event name:");
+                            String EventName = input.nextLine();
+                            if (search(6, EventName).empty())
+                                System.out.print(" The Event entered doesn't exist!\n");
+                            else {
+                                System.out.println("Events found " + EventName);
+                                search(6, EventName);
+                            }
+                            break;
 
-                    }
+                    } // end inner switch
                     break;
 
                 case 6:
                     System.out.println(" print contacts by first name ");
+                    if (PBook.empty())
+                        System.out.println("the contact list is empty");
+                    else {
+                        PBook.findFirst();
+                        if (!PBook.last()) {
+
+                        }
+
+                    } // end else
 
                     break;
 
                 case 7:
+                    AllEvent.printList(); // print all events alphabetically
                     break;
 
                 case 8:
@@ -186,7 +207,7 @@ public class Phonebook {
 
         LinkedList<Contact> returnedlist = new LinkedList<Contact>();
 
-        if (PBook.empty())
+        if (PBook.empty())// or allevent cjeck hf it is empty orcnot
             return returnedlist;
 
         PBook.findFirst();
@@ -219,6 +240,12 @@ public class Phonebook {
 
                     break;
 
+                case 6:
+
+                    if (AllEvent.retrieve().gettitle().equalsIgnoreCase(choice))
+                        System.out.println(AllEvent.retrieve());// insert as list
+                    break;
+
             }// end switch
 
             PBook.findNext();
@@ -247,8 +274,15 @@ public class Phonebook {
                 break;
 
             case 5:
+
                 if (PBook.retrieve().getBirthday().equals(choice))
                     returnedlist.insert(PBook.retrieve());
+                break;
+
+            case 6:
+
+                if (AllEvent.retrieve().gettitle().equalsIgnoreCase(choice))
+                    System.out.println(AllEvent.retrieve());
                 break;
 
         }// end switch

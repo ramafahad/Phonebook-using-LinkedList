@@ -1,4 +1,4 @@
-public class Event {
+public class Event implements Comparable<Event> {
     private String title;
     private String dateTime;
     private String location;
@@ -13,6 +13,11 @@ public class Event {
         this.dateTime = dateTime;
         this.location = location;
         this.contactInvolved = contactInvolved;
+    }
+
+    @Override
+    public int compareTo(Event b) {
+        return title.compareTo(b.title);
     }
 
     public String toString() {

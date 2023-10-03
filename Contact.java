@@ -40,14 +40,14 @@ public class Contact implements Comparable<Contact> {
     }
 
     @Override
-    public String toString() {
-        return " Name: " + name + "\n Phone Number: " + phone + "\n Email Address: " + email + "\n Address: " + address
-                + "\n Birthday: " + birthday + "\n Notes: " + notes;
+    public int compareTo(Contact b) {
+        return name.compareTo(b.name);
     }
 
     @Override
-    public int compareTo(Contact b) {
-        return name.compareTo(b.name);
+    public String toString() {
+        return " Name: " + name + "\n Phone Number: " + phone + "\n Email Address: " + email + "\n Address: " + address
+                + "\n Birthday: " + birthday + "\n Notes: " + notes;
     }
 
     public void setName(String name) {

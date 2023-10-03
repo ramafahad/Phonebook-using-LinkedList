@@ -52,26 +52,49 @@ public class LinkedList<T> {
             return;
         }
 
-        if (((Contact) c).compareTo((Contact) head.data) < 0) // add at first and change the head
-        {
-            n.next = head;
-            head = n;
-            return;
+        if (c instanceof Contact) {
+            if (((Contact) c).compareTo((Contact) head.data) < 0) // add at first and change the head
+            {
+                n.next = head;
+                head = n;
+                return;
+            }
 
-        }
+            Node<T> p = head;
+            Node<T> cur = head.next;
 
-        Node<T> p = head;
-        Node<T> cur = head.next;
+            while (cur != null && (((Contact) cur.data).compareTo((Contact) c)) <= 0) {
+                p = cur;
+                cur = cur.next;
+            }
 
-        while (cur != null && (((Contact) cur.data).compareTo((Contact) c)) <= 0) {
-            p = cur;
-            cur = cur.next;
-        }
+            n.next = cur; // add at the last or middle
+            p.next = n;
 
-        n.next = cur; // add at the last or middle
-        p.next = n;
+        } // outer if
+        if (c instanceof Event) {
+            if (((Event) c).compareTo((Event) head.data) < 0) // add at first and change the head
+            {
+                n.next = head;
+                head = n;
+                return;
 
-    }
+            }
+
+            Node<T> p = head;
+            Node<T> cur = head.next;
+
+            while (cur != null && (((Event) cur.data).compareTo((Event) c)) <= 0) {
+                p = cur;
+                cur = cur.next;
+            }
+
+            n.next = cur; // add at the last or middle
+            p.next = n;
+
+        } // outer if
+
+    }// end method addd
 
     public void insert(T val) {
         Node<T> tmp;
@@ -84,7 +107,8 @@ public class LinkedList<T> {
             current = current.next;
             current.next = tmp;
         }
-    }
+
+    }// end method insert
 
     /////////////////
     ///// احس كذا اوضح
