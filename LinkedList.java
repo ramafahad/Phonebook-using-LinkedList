@@ -96,6 +96,7 @@ public class LinkedList<T> {
 
     }// end method addd
 
+//////////////////////////////////////////////////////////////////
     public void insert(T val) {
         Node<T> tmp;
         if (empty())
@@ -110,7 +111,7 @@ public class LinkedList<T> {
 
     }// end method insert
 
-    /////////////////
+//////////////////////////////////////////////////////////////////////
     ///// احس كذا اوضح
     /*
      * public void insert(T vall) {
@@ -146,16 +147,16 @@ public class LinkedList<T> {
 
     public void printList() {
         if (empty()) {
-            System.out.println("not found!");
+            System.out.println("not found!"); /// نغير الكلام 
             return;
         }
-        findFirst();
+        current = head;
         while (current != null) {
             System.out.println(current.data.toString());
-            System.out.println("");
+            System.out.println(""); // why? delete it plz
             current = current.next;
         }
-        return;
+        
     }
 
     /*

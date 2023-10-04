@@ -49,7 +49,7 @@ public class Phonebook {
                     } else
                         System.out.println("This contact already exists!");
 
-                    break;
+                break;
 
                 case 2:
                     System.out.println(
@@ -75,11 +75,10 @@ public class Phonebook {
                             System.out.println("You have entered a wrong number, please try again!");
                             break;
                     }
-                    input.nextLine();
+                    input.nextLine(); ///???????
                     String choice = input.nextLine();
 
-                    if (!search(searchChoice, choice).empty()) { // اتوقع افضل لو اسمي الليست بدال ما انادي مرتين بس
-                                                                 // مالي خلق
+                    if (!search(searchChoice, choice).empty()) { 
                         System.out.println("Contact/s found!\n");
                         search(searchChoice, choice).printList();
                     } else
@@ -96,11 +95,11 @@ public class Phonebook {
                     System.out.println("Enter event title: ");
                     String title = input.nextLine();
                     System.out.println("Enter contact name:");
-                    String contact = input.nextLine(); // change it to conta name
+                    String contact = input.nextLine(); // change it to contact name
                     if (search(1, contact).empty())
                         System.out.print("Contact entered doesn't exist!\n");
                     else {
-                        Contact contactInvolved = search(1, contact).retrieve();
+                        Contact contactInvolved = search(1, contact).retrieve(); 
                         System.out.println("Enter event date and time (MM/DD/YYYY HH:MM):");
                         String DateTime = input.nextLine();
                         System.out.println("Enter event location:");
@@ -118,23 +117,24 @@ public class Phonebook {
                     break;
 
                 case 5:
-                    System.out.println("Enter search criteria:\n1.Contact name\n2.Event tittle");
+                    System.out.println("Enter search criteria number :\n1.Contact name\n2.Event tittle");
                     int searchEvent = input.nextInt();
                     input.nextLine();
                     switch (searchEvent) {
                         case 1:
                             System.out.println("Enter contact name:");
-                            String contactE = input.nextLine();
-                            if (search(1, contactE).empty())
+                            String contactName = input.nextLine();
+                            LinkedList<Contact> returnedContacts = search(1, contactName);
+                            if (returnedContacts.empty())
                                 System.out.print("Contact entered doesn't exist!\n");
                             else {
-                                System.out.println("Events for " + contactE); //يطبع معلومات الكونتاكت لاني ناديت تو سترينق، مزعجة يبيلها حل
-                                search(1, contactE).retrieve().getEvents().printList();
+                                System.out.println("Events for " + contactName); 
+                                returnedContacts.retrieve().getEvents().printList();
                             }
                             break;
 
                         case 2:
-                            System.out.println("Enter Event name:");
+                            System.out.println("Enter Event name:"); ///****gl;gf;lb,, */
                             String EventName = input.nextLine();
                             if (search(6, EventName).empty())
                                 System.out.print(" The Event entered doesn't exist!\n");
@@ -150,32 +150,35 @@ public class Phonebook {
                 case 6:
                     System.out.println("Enter the first name: ");
                     String firstName = input.next();
-                    if (search(7, firstName).empty()) 
+                    LinkedList<Contact> contactsWithSameName =search(7, firstName);
+                    if (contactsWithSameName.empty()) 
                                 System.out.print("No contact with the entered first name!\n");
-                            else {
+                    else {
                                 System.out.println("Contacts found!");
-                                search(7, firstName).printList();
-                            }
-                    break;
+                                contactsWithSameName.printList();
+                    }
+                break;
 
                 case 7:
                     AllEvent.printList(); // print all events alphabetically
-                    break;
+                break;
 
                 case 8:
                     System.out.println("Thank you for using ring ring phonebook, goodbye!");
-                    break;
+                break;
 
                 default:
                     System.out.println("You have entered a wrong number, please try again");
-                    break;
+                break;
 
             }
 
-        } while (num != 8); // i dont know what would be the max num so i put 8 عباطه
+        } while (num != 8); 
 
     }// end main
 
+
+///////////////////////////////////////////////////////////////////////////////////////////////
     public static boolean checkUnique(Contact c) {
 
         // return true if its unique false otherwise
@@ -190,7 +193,7 @@ public class Phonebook {
             PBook.findNext();
         } // end while
 
-        if (PBook.retrieve().getName().equalsIgnoreCase(c.getName())//////// !!!!!!!!!!!!! repeated
+        if (PBook.retrieve().getName().equalsIgnoreCase(c.getName())
                 || PBook.retrieve().getPhone().equalsIgnoreCase(c.getPhone()))
             return false;
 
@@ -198,10 +201,10 @@ public class Phonebook {
             return true;
 
     }// end of checkUnique method
+////////////////////////////////////////////////////////////////////////////////////////////////
 
     public static LinkedList<Contact> search(int searchChoice, String choice) {
-        // لازم نشيك انها ما ترجع نل لما نناديها
-
+        
         LinkedList<Contact> returnedlist = new LinkedList<Contact>();
 
         if (PBook.empty())// or allevent cjeck hf it is empty orcnot
@@ -297,5 +300,65 @@ public class Phonebook {
         return returnedlist;
 
     }// end searh method
+//////////////////////////////////////////////////////////////////////////////////////////
+
+
+public static void deleteContact(String name){
+
+    if(PBook.empty())
+    {
+        System.out.println("there is no contacts to be deleted");
+
+    }
+
+    if(search(1, name).empty())
+    {
+        System.out.println("contact not found");
+    }
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////
 
 }// end phone book
+
+
