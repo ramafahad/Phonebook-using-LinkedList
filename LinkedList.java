@@ -15,34 +15,7 @@ public class LinkedList<T> {
         head = current = null;
     }
 
-    public boolean full() {
-        return false;
-    }
-
-    public boolean empty() {
-        return head == null;
-    }
-
-    public boolean last() {
-        return current.next == null;
-    }
-
-    public void findFirst() {
-        current = head;
-    }
-
-    public void findNext() {
-        current = current.next;
-    }
-
-    public T retrieve() {
-        return current.data;
-    }
-
-    public void update(T val) {
-        current.data = val;
-    }
-
+    ///////////////////////////////////////////////////
     public void add(T c) {
         Node<T> n = new Node<T>(c);
 
@@ -96,7 +69,7 @@ public class LinkedList<T> {
 
     }// end method addd
 
-//////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
     public void insert(T val) {
         Node<T> tmp;
         if (empty())
@@ -111,7 +84,7 @@ public class LinkedList<T> {
 
     }// end method insert
 
-//////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////
     ///// احس كذا اوضح
     /*
      * public void insert(T vall) {
@@ -144,10 +117,31 @@ public class LinkedList<T> {
         else
             current = current.next;
     }
+    ////////////////////////////////////////////////////////////////////////
 
+    public void removeSpecificObject(T obj) {
+
+        if (head.data == obj)// check the condition
+            head = head.next;
+
+        Node<T> privous = head;
+        Node<T> temp = head.next;
+
+        while (temp != null) {
+            if (temp.data == obj) {
+                privous.next = temp.next;
+            } // end if
+            privous = privous.next;
+            temp = temp.next;
+
+        } // end while
+
+    }/// end method
+
+    ///////////////////////////////////////////////////////////////
     public void printList() {
         if (empty()) {
-            System.out.println("not found!"); /// نغير الكلام 
+            System.out.println("not found!"); /// نغير الكلام
             return;
         }
         current = head;
@@ -156,7 +150,35 @@ public class LinkedList<T> {
             System.out.println(""); // why? delete it plz
             current = current.next;
         }
-        
+
+    }
+
+    public boolean full() {
+        return false;
+    }
+
+    public boolean empty() {
+        return head == null;
+    }
+
+    public boolean last() {
+        return current.next == null;
+    }
+
+    public void findFirst() {
+        current = head;
+    }
+
+    public void findNext() {
+        current = current.next;
+    }
+
+    public T retrieve() {
+        return current.data;
+    }
+
+    public void update(T val) {
+        current.data = val;
     }
 
     /*
@@ -171,4 +193,4 @@ public class LinkedList<T> {
      * }}
      */
 
-}
+}// end class
