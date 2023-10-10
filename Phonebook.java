@@ -75,7 +75,7 @@ public class Phonebook {
                             System.out.println("You have entered a wrong number, please try again!");
                             break;
                     }
-                    input.nextLine(); /// ???????
+                    input.nextLine(); 
                     String choice = input.nextLine();
 
                     if (!search(searchChoice, choice).empty()) {
@@ -87,8 +87,8 @@ public class Phonebook {
 
                 case 3:
                     System.out.println("Enter the name of the contact you want to delete");
-                    String deleteContact = input.nextLine();
-                    //////
+                    String deletedContact = input.nextLine();
+                    deleteContact(deletedContact);
                     break;
 
                 case 4:
@@ -370,38 +370,55 @@ public class Phonebook {
 
     /////////////////////////////////////////////////////////////////////////////////////
 public static void deleteContact(String name){
+/*
+ * This method takes the name of contact as a string and delete it 
+ * , Also delete all associated events, the method does not return anything
+*/
 
-    if(PBook.empty())
+    if(PBook.empty()) // check if pbool is empty
     {
         System.out.println("there is no contacts to be deleted");
         return;
     }
 
-    LinkedList<Contact> TempList= search(1, name);
-    if(!TempList.empty())
+    LinkedList<Contact> TempList= search(1, name);// search for the cantact that has the given name
+    if(!TempList.empty()) // check if there is a returned contact
     {
-       PBook.
-       /// TempList.remove();//delete the contact
-        LinkedList<Event> contactEvent=searchEvent(3, name);
-        AllEvent.findFirst();
-        while(!AllEvent.empty()){
-            if(AllEvent.retrieve().getContactInvolved().getName().equalsIgnoreCase(name))
+        PBook.removeSpecificObject(TempList.retrieve()); //delete the contact
+        //LinkedList<Event> contactEvent=searchEvent(3, name); 
+        System.out.println("Contact is deleted! ");
+        if(!AllEvent.empty()){ // chech if there exist any event
+
+            boolean isDeleted =false ;
+            AllEvent.findFirst();
+            while(!AllEvent.last()){ // loop to delete any associated events
+                if(AllEvent.retrieve().getContactInvolved().getName().equalsIgnoreCase(name)){
+                    AllEvent.remove();
+                    isDeleted= true;
+                }// end if
+                else
+                    AllEvent.findNext();
+            }// end while loop
+            
+            if(isDeleted==true)
+            System.out.println("and all associated event were deleted!");
+            else
+            System.out.println("this contact doesn't have any event to be deleted");
+
+
+        }// end if
         else
-            AllEvent.findNext();
-        }
-        
+        System.out.println("there is no scheduled events to be deleted");
 
     } //outer if
-     else{System.out.println("contact not found");}
+
+    else
+        System.out.println("contact not found");
+    
 
     
-        
-    
-   
+}// end deleteContact method
 
-    
-        }// end method
 
-    ////////////////////////////////////////////////////////////////////////////////////////////
 
 }// end phone book

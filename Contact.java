@@ -1,5 +1,5 @@
 
-import java.util.*;
+
 
 public class Contact implements Comparable<Contact> {
     private String name;
@@ -10,14 +10,7 @@ public class Contact implements Comparable<Contact> {
     private String notes;
     private LinkedList<Event> events;
 
-    /*
-     * there is a sentence said if a contact is deleted then all related events are
-     * also deleted
-     * so there should be an event array or something in contact and use
-     * aggreagation as java2
-     */
-    // sort by name when added to linked list
-
+   
     public Contact(String name, String phone, String email, String address, String birthday, String notes) {
 
         this.name = name;
