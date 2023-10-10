@@ -117,51 +117,9 @@ public class Phonebook {
                     break;
 
                 case 5:
-                    System.out.println("Enter search criteria number :\n1.Contact name\n2.Event tittle");
-                    int searchEvent = input.nextInt();
-                    input.nextLine();
-                    LinkedList<Event> TempList;
-                    switch (searchEvent) {
-                        case 1:
-                            System.out.println("Enter contact name:");
-                            String contactName = input.nextLine();
-                            // LinkedList<Contact> returnedContacts = search(1, contactName);// i think we
-                            // dont need it
-                            TempList = searchEvent(1, contactName);
-                            if (!TempList.empty())
-                                TempList.printList();
 
-                            // if (returnedContacts.empty())
-                            // System.out.print("Contact entered doesn't exist!\n");
-                            // else {
-                            // System.out.println("Events for " + contactName);
-                            // returnedContacts.retrieve().getEvents().printList();
-                            // }
+                    printEventDetails();
 
-                            break;
-
-                        case 2:
-                            System.out.println("Enter Event name:"); /// ****gl;gf;lb,, */
-                            String EventName = input.nextLine();
-                            TempList = searchEvent(1, EventName);
-
-                            if (!TempList.empty())
-                                TempList.printList();
-                            else {
-                                System.out.println("the event not exist");
-                            }
-
-                            /*
-                             * if (search(6, EventName).empty())
-                             * System.out.print(" The Event entered doesn't exist!\n");
-                             * else {
-                             * System.out.println("Events found " + EventName);
-                             * search(6, EventName);
-                             * }
-                             */
-                            break;
-
-                    } // end inner switch of case 5
                     break;
 
                 case 6:
@@ -372,6 +330,45 @@ public class Phonebook {
     }// end method
      //////////////////////////////////////////////////////////////////////////////////////////
 
+    public static void printEventDetails() {
+
+        System.out.println("Enter search criteria number :\n1.Contact name\n2.Event tittle");
+        int searchEvent = input.nextInt();
+        input.nextLine();
+        LinkedList<Event> TempList;
+        LinkedList<Contact> returnedContacts;
+        switch (searchEvent) {
+            case 1:
+                System.out.println("Enter contact name:");
+                String contactName = input.nextLine();
+
+                returnedContacts = search(1, contactName);
+                if (returnedContacts.empty())
+                    System.out.print("Contact entered doesn't exist!\n");
+                else {
+                    System.out.println("Events for " + contactName);
+                    returnedContacts.retrieve().getEvents().printList();
+                }
+
+                break;
+
+            case 2:
+                System.out.println("Enter Event name:"); /// ****gl;gf;lb,, */
+                String EventName = input.nextLine();
+                TempList = searchEvent(1, EventName);
+
+                if (!TempList.empty())
+                    TempList.printList();
+                else {
+                    System.out.println("the event not exist");
+                }
+
+                break;
+        }// end switch
+
+    }// end method
+
+    /////////////////////////////////////////////////////////////////////////////////////
 public static void deleteContact(String name){
 
     if(PBook.empty())
