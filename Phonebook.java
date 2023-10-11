@@ -266,65 +266,14 @@ public class Phonebook {
     }// end searh method
      //////////////////////////////////////////////////////////////////////////////////////////
 
-    public static LinkedList<Event> searchEvent(int searchChoice, String choice) {
-        LinkedList<Event> returnedlist = new LinkedList<Event>();
-        switch (searchChoice) {
-            case 1:
-                LinkedList<Contact> TempList = search(1, choice);
-                if (!TempList.empty()) {
-                    returnedlist = TempList.retrieve().getEvents();
-                    if (!returnedlist.empty())
-                        return returnedlist;
-                    else {
-                        System.out.println("the contact dosen't have any schedual event ");
-                    } // inner else
-
-                } else {
-                    System.out.println("contact not found");
-                    return returnedlist;
-                } // outer else
-                break;
-
-            case 2:
-                if (AllEvent.empty())
-                    return returnedlist;
-
-                AllEvent.findFirst();
-                while (!AllEvent.last()) {
-                    if (AllEvent.retrieve().gettitle().equalsIgnoreCase(choice))
-                        returnedlist.insert(AllEvent.retrieve());
-                    AllEvent.findNext();
-                } // end while
-                if (AllEvent.retrieve().gettitle().equalsIgnoreCase(choice))// checking for last element
-                    returnedlist.insert(AllEvent.retrieve());
-
-                break;
-            case 3:
-                if (AllEvent.empty())
-                    return returnedlist;
-
-                while (!AllEvent.last()) {
-                    if (AllEvent.retrieve().getContactInvolved().getName().equalsIgnoreCase(choice))
-                        returnedlist.insert(AllEvent.retrieve());
-                } // end while
-                if (AllEvent.retrieve().getContactInvolved().getName().equalsIgnoreCase(choice))// checking for last
-                                                                                                // element
-                    returnedlist.insert(AllEvent.retrieve());
-
-                break;
-
-        } // end switch
-        return returnedlist;
-    }// end method
-     //////////////////////////////////////////////////////////////////////////////////////////
-
     public static void printEventDetails() {
 
         System.out.println("Enter search criteria number :\n1.Contact name\n2.Event tittle");
         int searchEvent = input.nextInt();
         input.nextLine();
         LinkedList<Event> TempList;
-        LinkedList<Contact> returnedContacts;
+        LinkedList<Contact> returnedContacts=new LinkedList<Contact>();
+        LinkedList<Event> returnedEvents=new LinkedList<Event>();
         switch (searchEvent) {
             case 1:
                 System.out.println("Enter contact name:");
@@ -334,27 +283,36 @@ public class Phonebook {
                 if (returnedContacts.empty())
                     System.out.print("Contact entered doesn't exist!\n");
                 else {
+                    if(!returnedContacts.retrieve().getEvents().empty()) {
                     System.out.println("Events for " + contactName);
                     returnedContacts.retrieve().getEvents().printList();
+                    } //end if
+                    else
+                    System.out.println("There are no events for " + contactName);
                 }
-
                 break;
 
-            case 2:
-                System.out.println("Enter Event name:"); /// ****gl;gf;lb,, */
+
+            case 2: 
+
+                System.out.println("Enter Event name:");
                 String EventName = input.nextLine();
-                TempList = searchEvent(1, EventName);
-
-                if (!TempList.empty())
-                    TempList.printList();
+                if (AllEvent.empty())
+                System.out.println("There are no events!"); 
                 else {
-                    System.out.println("the event not exist");
-                }
+                AllEvent.findFirst();
+                while (!AllEvent.last()) {
+                    if (AllEvent.retrieve().gettitle().equalsIgnoreCase(EventName))
+                        returnedEvents.insert(AllEvent.retrieve());
+                    AllEvent.findNext();
+                } // end while
+                if (AllEvent.retrieve().gettitle().equalsIgnoreCase(EventName))// checking for last element
+                    returnedEvents.insert(AllEvent.retrieve());
+                } //end else
 
                 break;
-        }// end switch
 
-    }// end method
+    }}// end method
 
     /////////////////////////////////////////////////////////////////////////////////////
 public static void deleteContact(String name){
