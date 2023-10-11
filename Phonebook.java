@@ -125,7 +125,7 @@ public class Phonebook {
                 case 6:
                     System.out.println("Enter the first name: ");
                     String firstName = input.next();
-                    LinkedList<Contact> contactsWithSameName = search(7, firstName);
+                    LinkedList<Contact> contactsWithSameName = search(6, firstName);
                     if (contactsWithSameName.empty())
                         System.out.print("No contact with the entered first name!\n");
                     else {
@@ -214,13 +214,7 @@ public class Phonebook {
 
                     break;
 
-                case 6:// ?????????????????????????????????????????????
-
-                    if (AllEvent.retrieve().gettitle().equalsIgnoreCase(choice))
-                        System.out.println(AllEvent.retrieve());// insert as list
-                    break;
-
-                case 7:
+                case 6:
                     if (PBook.retrieve().getName().substring(0, PBook.retrieve().getName().indexOf(" "))
                             .equalsIgnoreCase(choice))
                         returnedlist.insert(PBook.retrieve());
@@ -260,16 +254,10 @@ public class Phonebook {
                 break;
 
             case 6:
-
-                if (AllEvent.retrieve().gettitle().equalsIgnoreCase(choice))
-                    System.out.println(AllEvent.retrieve());
-                break;
-
-            case 7:
-                if (PBook.retrieve().getName().substring(0, PBook.retrieve().getName().indexOf(" "))
-                        .equalsIgnoreCase(choice))
-                    returnedlist.insert(PBook.retrieve());
-                break;
+                    if (PBook.retrieve().getName().substring(0, PBook.retrieve().getName().indexOf(" "))
+                            .equalsIgnoreCase(choice))
+                        returnedlist.insert(PBook.retrieve());
+                    break;
 
         }// end switch
 
@@ -375,7 +363,7 @@ public static void deleteContact(String name){
  * , Also delete all associated events, the method does not return anything
 */
 
-    if(PBook.empty()) // check if pbool is empty
+    if(PBook.empty()) // check if pbook is empty
     {
         System.out.println("there is no contacts to be deleted");
         return;
@@ -385,7 +373,6 @@ public static void deleteContact(String name){
     if(!TempList.empty()) // check if there is a returned contact
     {
         PBook.removeSpecificObject(TempList.retrieve()); //delete the contact
-        //LinkedList<Event> contactEvent=searchEvent(3, name); 
         System.out.println("Contact is deleted! ");
         if(!AllEvent.empty()){ // chech if there exist any event
 
@@ -399,7 +386,12 @@ public static void deleteContact(String name){
                 else
                     AllEvent.findNext();
             }// end while loop
-            
+
+            // check last element
+            if(AllEvent.retrieve().getContactInvolved().getName().equalsIgnoreCase(name)){
+                    AllEvent.remove();
+                    isDeleted= true;}
+
             if(isDeleted==true)
             System.out.println("and all associated event were deleted!");
             else
@@ -412,7 +404,7 @@ public static void deleteContact(String name){
 
     } //outer if
 
-    else
+    else //no contact with name
         System.out.println("contact not found");
     
 

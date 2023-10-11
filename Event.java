@@ -22,7 +22,7 @@ public class Event implements Comparable<Event> {
 
     public String toString() {
         return " Event title: " + title + "\n Contact title: " + contactInvolved.getName()
-                + "\n Event date and time(MM/DD/YYYYHH:MM):" + dateTime + "\n Event location:" + location;
+                + "\n Event date and time(MM/DD/YYYYHH:MM):" + dateTime + "\n Event location:" + location+"\n";
     }
 
     public String gettitle() {

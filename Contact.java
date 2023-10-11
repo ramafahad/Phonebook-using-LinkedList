@@ -40,7 +40,7 @@ public class Contact implements Comparable<Contact> {
     @Override
     public String toString() {
         return " Name: " + name + "\n Phone Number: " + phone + "\n Email Address: " + email + "\n Address: " + address
-                + "\n Birthday: " + birthday + "\n Notes: " + notes;
+                + "\n Birthday: " + birthday + "\n Notes: " + notes+"\n";
     }
 
     public void setName(String name) {
