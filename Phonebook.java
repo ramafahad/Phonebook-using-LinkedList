@@ -3,15 +3,8 @@ import java.util.Scanner;
 public class Phonebook {
 
     public static Scanner input = new Scanner(System.in); // to use it in the whole class if needed
-    public static LinkedList<Contact> PBook = new LinkedList<Contact>(); // to use it in main and other methods
-    public static LinkedList<Event> AllEvent = new LinkedList<Event>();;
-    // field for linkedlist
-
-    // i think the uniqueness for the contact should be checking here, i mean we can
-    // create a contact but not add it untill we check
-
-    // implement a method to print all contact that share a event& that shate the
-    // first name
+    public static LinkedList<Contact> PBook = new LinkedList<Contact>(); // a list of all contacts
+    public static LinkedList<Event> AllEvent = new LinkedList<Event>(); //a list of all events
 
     public static void main(String[] args) {
 
@@ -22,8 +15,7 @@ public class Phonebook {
 
             System.out.println("Please choose an option from the following ");
             System.out.println(
-                    " 1.Add a contact \n 2.Search for a contact \n 3.Delete a contact \n 4.Schedule an event \n 5.Print event details \n 6.Print contacts by first name \n 7.Print all events alphabetically \n 8.Exit");
-
+                " 1.Add a contact \n 2.Search for a contact \n 3.Delete a contact \n 4.Schedule an event \n 5.Print event details \n 6.Print contacts by first name \n 7.Print all events alphabetically \n 8.Print contacts that share an event\n 9.Exit");
             num = input.nextInt();
             input.nextLine();
 
@@ -51,9 +43,11 @@ public class Phonebook {
 
                     break;
 
+
+
                 case 2:
                     System.out.println(
-                            "Enter search criteria:\n 1.Name\n 2.Phone Number\n 3.Email Address \n 4.Address\n 5.Birthday");
+                        "Enter search criteria:\n 1.Name\n 2.Phone Number\n 3.Email Address \n 4.Address\n 5.Birthday");
                     int searchChoice = input.nextInt();
                     switch (searchChoice) {
                         case 1:
@@ -61,7 +55,7 @@ public class Phonebook {
                             break;
                         case 2:
                             System.out.println("Enter the contact's phone number");
-                            break; // should we check unique here? before the user enters all the rest ويتعب نفسه
+                            break; 
                         case 3:
                             System.out.println("Enter the contact's email address:");
                             break;
@@ -77,7 +71,6 @@ public class Phonebook {
                     }
                     input.nextLine(); 
                     String choice = input.nextLine();
-
                     if (!search(searchChoice, choice).empty()) {
                         System.out.println("Contact/s found!\n");
                         search(searchChoice, choice).printList();
@@ -85,11 +78,15 @@ public class Phonebook {
                         System.out.println("Nothing found!\n");
                     break;
 
+
+
                 case 3:
                     System.out.println("Enter the name of the contact you want to delete");
                     String deletedContact = input.nextLine();
                     deleteContact(deletedContact);
                     break;
+
+
 
                 case 4:
                     System.out.println("Enter event title: ");
@@ -137,8 +134,14 @@ public class Phonebook {
                 case 7:
                     AllEvent.printList(); // print all events alphabetically
                     break;
-
+                
                 case 8:
+                    printSharedEvent();
+                    break;
+
+
+
+                case 9:
                     System.out.println("Thank you for using ring ring phonebook, goodbye!");
                     break;
 
@@ -148,9 +151,21 @@ public class Phonebook {
 
             }
 
-        } while (num != 8);
+        } while (num != 9);
 
     }// end main
+
+
+
+
+
+
+
+
+
+
+
+
 
     ///////////////////////////////////////////////////////////////////////////////////////////////
     public static boolean checkUnique(Contact c) {
@@ -303,11 +318,11 @@ public class Phonebook {
                 AllEvent.findFirst();
                 while (!AllEvent.last()) {
                     if (AllEvent.retrieve().gettitle().equalsIgnoreCase(EventName))
-                        returnedEvents.insert(AllEvent.retrieve());
+                        System.out.println(AllEvent.retrieve().toString());
                     AllEvent.findNext();
                 } // end while
                 if (AllEvent.retrieve().gettitle().equalsIgnoreCase(EventName))// checking for last element
-                    returnedEvents.insert(AllEvent.retrieve());
+                    System.out.println(AllEvent.retrieve().toString());
                 } //end else
 
                 break;
@@ -369,6 +384,33 @@ public static void deleteContact(String name){
     
 }// end deleteContact method
 
-
+public static void printSharedEvent(){
+    System.out.println("Enter event title");
+                    String EventName = input.nextLine();
+                    System.out.println("Enter event date and time (MM/DD/YYYY HH:MM):");
+                    String DateTime = input.nextLine();
+                    System.out.println("Enter event location:");
+                    String location = input.nextLine();
+                    if (AllEvent.empty())
+                       System.out.println("There are no events!"); 
+                    else {
+                        boolean found=false;
+                        AllEvent.findFirst();
+                        while (!AllEvent.last()) {
+                            if (AllEvent.retrieve().gettitle().equalsIgnoreCase(EventName) && AllEvent.retrieve().getDateTime().equalsIgnoreCase(DateTime) && AllEvent.retrieve().getLocation().equalsIgnoreCase(location) ){
+                            found=true;
+                            System.out.println(AllEvent.retrieve().getContactInvolved().getName());}
+                            AllEvent.findNext();
+                        }  //end while
+                        if (AllEvent.retrieve().gettitle().equalsIgnoreCase(EventName) && AllEvent.retrieve().getDateTime().equalsIgnoreCase(DateTime) && AllEvent.retrieve().getLocation().equalsIgnoreCase(location) ){
+                            found=true;
+                            System.out.println(AllEvent.retrieve().getContactInvolved().getName());}
+                        
+                        if(!found)
+                             System.out.println("No event found for the entered info!");
+                        else
+                            System.out.println("these are all the involved contacts");     
+                    } //end else
+}
 
 }// end phone book
