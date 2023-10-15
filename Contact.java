@@ -3,7 +3,7 @@
 
 public class Contact implements Comparable<Contact> {
     private String name;
-    private String phone; // i believe its better in String
+    private String phone; 
     private String email;
     private String address;
     private String birthday;
@@ -12,7 +12,7 @@ public class Contact implements Comparable<Contact> {
 
    
     public Contact(String name, String phone, String email, String address, String birthday, String notes) {
-
+    //constructor with parameters
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -22,7 +22,7 @@ public class Contact implements Comparable<Contact> {
         events = new LinkedList<Event>();
     }
 
-    public Contact() {
+    public Contact() { // default constructor
         name = null;
         phone = null;
         email = null;
@@ -32,8 +32,12 @@ public class Contact implements Comparable<Contact> {
         events = new LinkedList<Event>();
     }
 
+
+
     @Override
     public int compareTo(Contact b) {
+        // the method compare between two objects And return an integer indicate if there are equal 
+        //or the first object is bigger than the other ,or smaller
         return name.compareTo(b.name);
     }
 
@@ -100,20 +104,22 @@ public class Contact implements Comparable<Contact> {
     }
 
     public boolean checkconflict(String DateTime) {
-        // true if theres conflict, false if not
-        if (events.empty())
+        // the method accept a string and check if there are to events at the same time
+        //returns true if theres conflict, false if not
+
+        if (events.empty()) // check if list is empty
             return false;
 
         events.findFirst();
         while (!events.last()) {
-            if (events.retrieve().getDateTime().equals((DateTime)))
+            if (events.retrieve().getDateTime().equals((DateTime))) // check if there are to events at the same time
                 return true;
             events.findNext();
-        }
+        }// end while
         if (events.retrieve().getDateTime().equals(DateTime))
             return true;
         return false;
 
-    }
+    }// end checkconflict
 
 }

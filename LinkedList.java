@@ -1,11 +1,4 @@
 
-//linked list data structure used to store the contacts.
-//methods for adding, searching, and deleting contacts from the list.
-
-// public Contact -or list of contacts?- search(){}
-// public void delete(){ also deletes events }
-
-
 
 public class LinkedList<T> {
     private Node<T> head;
@@ -15,7 +8,7 @@ public class LinkedList<T> {
         head = current = null;
     }
 
-    ///////////////////////////////////////////////////
+   
     public void add(T c) {
     
         Node<T> n = new Node<T>(c);

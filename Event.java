@@ -2,13 +2,10 @@ public class Event implements Comparable<Event> {
     private String title;
     private String dateTime;
     private String location;
-    private Contact contactInvolved;// also, we may name it as EventMember to be more clear
+    private Contact contactInvolved;
 
     public Event(String title, String dateTime, String location, Contact contactInvolved) {
-
-        // need to check if contactInvolved exists, and theres no conflict with
-        // contactInvolved
-
+            //constructor with parameters
         this.title = title;
         this.dateTime = dateTime;
         this.location = location;
@@ -16,7 +13,9 @@ public class Event implements Comparable<Event> {
     }
 
     @Override
-    public int compareTo(Event b) {
+    public int compareTo(Event b) { 
+        // the method compare between two objects And return an integer indicate if there are equal 
+        //or the first object is bigger than the other ,or smaller
         return title.compareTo(b.title);
     }
 
