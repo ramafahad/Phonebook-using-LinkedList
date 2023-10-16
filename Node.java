@@ -3,15 +3,18 @@ public class Node<T> {
     public Node<T> next;
 
     public Node() {
+        // default constructor
         data = null;
         next = null;
     }
 
     public Node(T val) {
+        // constructor with parameters
         data = val;
         next = null;
     }
 
+    //setter&getter
     public T getData() {
         return data;
     }

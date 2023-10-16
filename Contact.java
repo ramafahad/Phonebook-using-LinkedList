@@ -1,18 +1,15 @@
 
-
-
 public class Contact implements Comparable<Contact> {
     private String name;
-    private String phone; 
+    private String phone;
     private String email;
     private String address;
     private String birthday;
     private String notes;
     private LinkedList<Event> events;
 
-   
     public Contact(String name, String phone, String email, String address, String birthday, String notes) {
-    //constructor with parameters
+        // constructor with parameters
         this.name = name;
         this.phone = phone;
         this.email = email;
@@ -32,20 +29,40 @@ public class Contact implements Comparable<Contact> {
         events = new LinkedList<Event>();
     }
 
-
-
     @Override
     public int compareTo(Contact b) {
-        // the method compare between two objects And return an integer indicate if there are equal 
-        //or the first object is bigger than the other ,or smaller
+        // the method compare between two objects And return an integer indicate if
+        // there are equal
+        // or the first object is bigger than the other ,or smaller
         return name.compareTo(b.name);
     }
+
+    public boolean checkconflict(String DateTime) {
+        // the method accept a string and check if there are to events at the same time
+        // returns true if theres conflict, false if not
+
+        if (events.empty()) // check if list is empty
+            return false;
+
+        events.findFirst();
+        while (!events.last()) {
+            if (events.retrieve().getDateTime().equals((DateTime))) // check if there are to events at the same time
+                return true;
+            events.findNext();
+        } // end while
+        if (events.retrieve().getDateTime().equals(DateTime))
+            return true;
+        return false;
+
+    }// end checkconflict
 
     @Override
     public String toString() {
         return " Name: " + name + "\n Phone Number: " + phone + "\n Email Address: " + email + "\n Address: " + address
-                + "\n Birthday: " + birthday + "\n Notes: " + notes+"\n";
+                + "\n Birthday: " + birthday + "\n Notes: " + notes + "\n";
     }
+
+    //// setter& getter
 
     public void setName(String name) {
         this.name = name;
@@ -102,24 +119,5 @@ public class Contact implements Comparable<Contact> {
     public LinkedList<Event> getEvents() {
         return events;
     }
-
-    public boolean checkconflict(String DateTime) {
-        // the method accept a string and check if there are to events at the same time
-        //returns true if theres conflict, false if not
-
-        if (events.empty()) // check if list is empty
-            return false;
-
-        events.findFirst();
-        while (!events.last()) {
-            if (events.retrieve().getDateTime().equals((DateTime))) // check if there are to events at the same time
-                return true;
-            events.findNext();
-        }// end while
-        if (events.retrieve().getDateTime().equals(DateTime))
-            return true;
-        return false;
-
-    }// end checkconflict
 
 }
