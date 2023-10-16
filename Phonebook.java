@@ -279,9 +279,7 @@ public class Phonebook {
         System.out.println("Enter search criteria number :\n1.Contact name\n2.Event tittle");
         int searchEvent = input.nextInt();
         input.nextLine();
-        LinkedList<Event> TempList;
         LinkedList<Contact> returnedContacts = new LinkedList<Contact>();
-        LinkedList<Event> returnedEvents = new LinkedList<Event>();
         switch (searchEvent) {
             case 1:
                 System.out.println("Enter contact name:");
