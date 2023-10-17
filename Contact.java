@@ -39,8 +39,8 @@ public class Contact implements Comparable<Contact> {
 
     public boolean checkconflict(String DateTime) {
         // the method accept a string and check if there are to events at the same time
-        // returns true if theres conflict, false if not
-
+        // returns true if theres conflict, false otherwise
+       
         if (events.empty()) // check if list is empty
             return false;
 

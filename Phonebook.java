@@ -151,11 +151,11 @@ public class Phonebook {
 
     public static LinkedList<Contact> search(int searchChoice, String choice) {
         /*
-         * this method searches for a list of contacts based on criteria
-         * takes search choice and the string to search for
-         * searches by either full name, phone number,email, adress, birthday, or first
-         * name
-         * and returns a contact linked list with all the contact that match the search
+         * This method searches for a list of contacts based on the inputs the user
+         * entered.
+         * It searches either by full name, phone number ,email, address, birthday, or
+         * first name
+         * and returns a linked list with all the contacts that match the search
          */
 
         LinkedList<Contact> returnedlist = new LinkedList<Contact>();
