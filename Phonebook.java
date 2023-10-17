@@ -29,7 +29,7 @@ public class Phonebook {
                     String email = input.nextLine();
                     System.out.println("Enter the contact's address:");
                     String address = input.nextLine();
-                    System.out.println("Enter the contact's birthday:");
+                    System.out.println("Enter the contact's birthday (MM/DD/YYYY):");
                     String bday = input.nextLine();
                     System.out.println("Enter any notes for the contact:");
                     String note = input.nextLine();
@@ -61,7 +61,7 @@ public class Phonebook {
                             System.out.println("Enter the contact's address:");
                             break;
                         case 5:
-                            System.out.println("Enter the contact's birthday:");
+                            System.out.println("Enter the contact's birthday (MM/DD/YYYY):");
                             break;
                         default:
                             System.out.println("You have entered a wrong number, please try again!");
