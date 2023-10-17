@@ -140,8 +140,8 @@ public class Phonebook {
             PBook.findNext();
         } // end while
 
-        if (PBook.retrieve().getName().equalsIgnoreCase(c.getName())
-                || PBook.retrieve().getPhone().equalsIgnoreCase(c.getPhone()))
+        if (PBook.retrieve().getName().equalsIgnoreCase(c.getName()) 
+                || PBook.retrieve().getPhone().equalsIgnoreCase(c.getPhone())) //check last element
             return false;
 
         else
@@ -149,9 +149,12 @@ public class Phonebook {
 
     }// end of checkUnique method
 
+
+
+
     public static LinkedList<Contact> search(int searchChoice, String choice) {
         /*
-         * This method searches for a list of contacts based on the inputs the user
+        / * This method searches for a list of contacts based on the inputs the user
          * entered.
          * It searches either by full name, phone number ,email, address, birthday, or
          * first name
@@ -200,8 +203,7 @@ public class Phonebook {
             PBook.findNext();
         } // end while
 
-        // check the last node
-        switch (searchChoice) {
+        switch (searchChoice) {  // check last element
             case 1:
                 if (PBook.retrieve().getName().equalsIgnoreCase(choice))
                     returnedlist.insert(PBook.retrieve());
@@ -240,6 +242,9 @@ public class Phonebook {
 
     }// end searh method
 
+
+
+
     public static void scheduleEvent() {
         /*
          * schedule an event for a contact, it checks if the contact exists
@@ -249,6 +254,7 @@ public class Phonebook {
         String title = input.nextLine();
         System.out.println("Enter contact name:");
         String contact = input.nextLine(); // change it to contact name
+
         if (search(1, contact).empty())
             System.out.print("Contact entered doesn't exist!\n");
         else {
@@ -257,17 +263,20 @@ public class Phonebook {
             String DateTime = input.nextLine();
             System.out.println("Enter event location:");
             String location = input.nextLine();
+
             if (contactInvolved.checkconflict(DateTime))
-                System.out.println("the contact has time conflict!\n");
+                System.out.println("The contact has time conflict!\n");
             else {
                 Event e = new Event(title, DateTime, location, contactInvolved);
                 contactInvolved.setEvents(e);
-                AllEvent.add(e);
-                // add to big list
+                AllEvent.add(e); // add to big list
                 System.out.println("Event scheduled successfully!");
             }
         } // end else
     } // end schedule event
+
+
+
 
     public static void printEventDetails() {
         /*
@@ -303,14 +312,19 @@ public class Phonebook {
                 if (AllEvent.empty())
                     System.out.println("There are no events!");
                 else {
+                    boolean found=false;
                     AllEvent.findFirst();
                     while (!AllEvent.last()) {
-                        if (AllEvent.retrieve().gettitle().equalsIgnoreCase(EventName))
+                        if (AllEvent.retrieve().gettitle().equalsIgnoreCase(EventName)){
                             System.out.println(AllEvent.retrieve().toString());
+                            found=true;}
                         AllEvent.findNext();
                     } // end while
-                    if (AllEvent.retrieve().gettitle().equalsIgnoreCase(EventName))// checking for last element
+                    if (AllEvent.retrieve().gettitle().equalsIgnoreCase(EventName)){// check last element
                         System.out.println(AllEvent.retrieve().toString());
+                        found=true;}
+                    if(!found)
+                    System.out.println("There are no events with that title!");
                 } // end else
                 break;
 
@@ -320,6 +334,9 @@ public class Phonebook {
 
         }
     }// end method
+
+
+
 
     public static void deleteContact(String name) {
         /*
@@ -349,8 +366,7 @@ public class Phonebook {
                         AllEvent.findNext();
                 } // end while loop
 
-                // check last element
-                if (AllEvent.retrieve().getContactInvolved().getName().equalsIgnoreCase(name)) {
+                if (AllEvent.retrieve().getContactInvolved().getName().equalsIgnoreCase(name)) { // check last element
                     AllEvent.remove();
                     isDeleted = true;
                 }
@@ -368,6 +384,9 @@ public class Phonebook {
         else // no contact with name
             System.out.println("contact not found");
     }// end deleteContact method
+
+
+
 
     public static void printSharedEvent() {
         /*
@@ -394,9 +413,10 @@ public class Phonebook {
                 }
                 AllEvent.findNext();
             } // end while
+
             if (AllEvent.retrieve().gettitle().equalsIgnoreCase(EventName)
                     && AllEvent.retrieve().getDateTime().equalsIgnoreCase(DateTime)
-                    && AllEvent.retrieve().getLocation().equalsIgnoreCase(location)) {
+                    && AllEvent.retrieve().getLocation().equalsIgnoreCase(location)) { //check last element
                 found = true;
                 System.out.println(AllEvent.retrieve().getContactInvolved().getName());
             }
